@@ -27,9 +27,9 @@ const Home = () => {
         </Typography>
         <Box className="py-20 flex">
           <FormControl
+          className="otp-input"
             sx={{
               m: 1,
-              width: "460px",
               margin: "0px",
               borderLeft: "5px solid var(--button-color1)",
             }}

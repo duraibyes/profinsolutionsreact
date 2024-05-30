@@ -78,13 +78,16 @@
 
 .get-otp-btn {
   background: var(--button-color1) !important;
-  padding: 3px 2px !important;
+  padding: 3px 12px !important;
   border-radius: none !important;
 }
 
 .main-section {
   min-height: 100vh;
   padding: 15px 10px;
+}
+.otp-input {
+  width: "400px";
 }
 
 @media (min-width: 600px) {
@@ -112,5 +115,8 @@
   .main-section {
     min-height: 100vh;
     padding: 20px 40px;
+  }
+  .otp-input {
+    width: "460px";
   }
 }
