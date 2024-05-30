@@ -4,7 +4,7 @@ import GlobalStylesComponent from "./styles/GlobalStylesComponent ";
 
 import Footer from "./components/layouts/Footer";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Home from "./components/pages/Home";
+import Home from "./components/pages/Home/Home";
 import Loader from "./components/Loader";
 import { useEffect, useState } from "react";
 
@@ -36,7 +36,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStylesComponent />
-      <section className="main-section">
+      <section style={{ minHeight: '100vh'}}>
         {loader ? (
           <Loader />
         ) : (

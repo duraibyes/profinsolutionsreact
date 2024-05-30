@@ -1,12 +1,25 @@
 :root {
   --primary-color: #f38705;
+  --primary-color1: #E9651A;
   --secondary-color: #fafafa;
   --secondary-color1: #f5f5f5;
+  --secondary-color2: #F6F6F6;
   --head-color: #16243e;
   --text-color1: #666666;
   --text-color2: #b3b3b3;
   --text-color3: #696969;
   --button-color1: #797978;
+  --section-color1: #FCFCFC;
+}
+
+.text-primary1 {
+    color: var(--primary-color1) !important;
+}
+.text-black {
+    color: black !important;
+}
+.section-color1 {
+    background-color: var(--section-color1);
 }
 .flex {
   display: flex !important;
@@ -52,6 +65,22 @@
 .text-primary {
   color: var(--primary-color) !important;
 }
+.about-card {
+    background-color: var(--secondary-color2);
+    padding: 21px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.about-card .text-primary1 {
+    font-size: 32px !important;
+    font-weight: 900;
+    letter-spacing: 3px !important;
+}
+
+.about-card .text-black {
+    font-weight: 900;
+}
 
 .spinner-logo {
   -webkit-animation: spin 4s linear infinite;
@@ -83,11 +112,14 @@
 }
 
 .main-section {
-  min-height: 100vh;
   padding: 15px 10px;
 }
 .otp-input {
   width: "400px";
+}
+
+.about-text-section {
+    padding: 10px 20px;
 }
 
 @media (min-width: 600px) {
@@ -113,10 +145,12 @@
     border-radius: none !important;
   }
   .main-section {
-    min-height: 100vh;
     padding: 20px 40px;
   }
   .otp-input {
     width: "460px";
+  }
+  .about-text-section {
+    padding: 0px 60px;
   }
 }

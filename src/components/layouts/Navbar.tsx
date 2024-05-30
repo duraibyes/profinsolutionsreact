@@ -35,7 +35,7 @@ export default function Navbar(props: Props) {
     setMobileOpen((prevState) => !prevState);
   };
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box  onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         <img src={Logo} />
       </Typography>
@@ -69,7 +69,7 @@ export default function Navbar(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Grid container>
+    <Grid container  className="main-section">
       <Grid item xs={12}>
         <AppBar
           position="static"
