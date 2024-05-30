@@ -36,7 +36,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStylesComponent />
-      <section style={{ minHeight: "100vh", padding: "20px 40px" }}>
+      <section className="main-section">
         {loader ? (
           <Loader />
         ) : (
