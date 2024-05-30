@@ -62,7 +62,7 @@ const Home = () => {
             Unlock Best Personal Loan Offers suitable for your needs from 30+
             Lenders
           </Typography>
-          <Box className=" flex w-100 flex-row flex-wrap py-20" sx={{gap: '7px'}}>
+          <Box className=" flex w-100 flex-row flex-wrap py-20" sx={{gap: '10px'}}>
             <Box className="flex w-40">
                 <img src={ListIcon} className="pr-10 w-25px" />
                 <Typography> Bussiness Loan</Typography>
