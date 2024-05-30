@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #f38705;
+  --secondary-color: #fafafa;
+  --secondary-color1: #f5f5f5;
+  --head-color: #16243e;
+  --text-color1: #666666;
+  --text-color2: #b3b3b3;
+  --text-color3: #696969;
+}
+.flex {
+  display: flex !important;
+}
+.items-center {
+  align-items: center !important;
+}
+
+.flex-box {
+  display: none;
+}
+
+.more-icon {
+    display: block;
+}
+
+.link {
+    color: 'var(--text-color3) !important',
+}
+
+@media (min-width: 600px) {
+  .flex-box {
+    display: flex;
+    align-items: center;
+    /* Add any other styles you need */
+  }
+  .more-icon {
+    display: none;
+  }
+}

@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Jost");
+
+$primary-color: #f38705;
+$secondary-color: #fafafa;
+$secondary-color1: #f5f5f5;
+$head-color: #16243e;
+$text-color1: #666666;
+$text-color2: #b3b3b3;
+
+body {
+    margin: 0;
+    font-family: "Jost";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: $secondary-color1;
+    min-height: 100vh;
+    font-size: 14px;
+}
