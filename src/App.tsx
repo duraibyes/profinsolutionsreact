@@ -16,7 +16,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStylesComponent />
-      <section className="p-20">
+      <section className="p-20" style={{minHeight: '100vh'}}>
         <NavBar />
         <Footer />
       </section>

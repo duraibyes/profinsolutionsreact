@@ -13,6 +13,18 @@
 .items-center {
   align-items: center !important;
 }
+.justify-center {
+    justify-content: center !important;
+}
+.text-end {
+    text-align: right;
+}
+.text-start {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
 
 .flex-box {
   display: none;
@@ -25,11 +37,17 @@
 .link {
     color: 'var(--text-color3) !important',
 }
+.footer-text {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+}
 
 @media (min-width: 600px) {
   .flex-box {
     display: flex;
     align-items: center;
+    gap: 35px;
     /* Add any other styles you need */
   }
   .more-icon {
