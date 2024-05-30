@@ -1,7 +1,12 @@
 import { createTheme, ThemeProvider, CssBaseline } from "@mui/material";
 import NavBar from "./components/layouts/Navbar";
 import GlobalStylesComponent from "./styles/GlobalStylesComponent ";
+
 import Footer from "./components/layouts/Footer";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Loader from "./components/Loader";
+import { useEffect, useState } from "react";
 
 const theme = createTheme({
   palette: {
@@ -11,14 +16,38 @@ const theme = createTheme({
   },
 });
 
+const loading = true;
+
 function App() {
+
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    console.log(' entering into efferct')
+    let timer1 = setTimeout(() => setLoader(false),1000);
+    return () => {
+      console.log(' enterring itn o unmout')
+      clearTimeout(timer1);
+    };
+  }, [])
+  
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStylesComponent />
-      <section className="p-20" style={{minHeight: '100vh'}}>
-        <NavBar />
-        <Footer />
+      <section style={{ minHeight: "100vh", padding: "20px 40px" }}>
+        {loader ? (
+          <Loader />
+        ) : (
+          <Router>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+            </Routes>
+            <Footer />
+          </Router>
+        )}
       </section>
     </ThemeProvider>
   );
