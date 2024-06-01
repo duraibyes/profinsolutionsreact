@@ -8,8 +8,12 @@ import HomeBanner from "../../../assets/homebanner.svg";
 import HomeInputSection from "./HomeInputSection";
 import LoanBulletList from "./LoanBulletList";
 import About from "../about/About";
+import { useState } from "react";
 
 const Home = () => {
+
+  const [mobileNo, setMobileNo] = useState<string>('');
+
   return (
     <>
     <Grid container className="main-section">
@@ -24,7 +28,7 @@ const Home = () => {
           Unlock Best Personal Loan Offers suitable for your needs from 30+
           Lenders
         </Typography>
-        <HomeInputSection />
+        <HomeInputSection setMobileNo={setMobileNo} mobileNo={mobileNo} />
         <Box className="loan-bullet-list">
           <Typography
             sx={{

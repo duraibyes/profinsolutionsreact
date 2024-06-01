@@ -111,6 +111,12 @@
   border-radius: none !important;
 }
 
+.get-otp-btn-primary {
+  background: var(--primary-color) !important;
+  padding: 3px 12px !important;
+  border-radius: none !important;
+}
+
 .main-section {
   padding: 15px 10px;
 }
@@ -120,6 +126,14 @@
 
 .about-text-section {
     padding: 10px 20px;
+}
+
+.border-left-disabled {
+  border-left: 5px solid var(--button-color1) !important
+}
+
+.border-left-primary {
+  border-left: 5px solid var(--primary-color) !important
 }
 
 @media (min-width: 600px) {
@@ -141,6 +155,12 @@
 
   .get-otp-btn {
     background: var(--button-color1) !important;
+    padding: 15px 40px !important;
+    border-radius: none !important;
+  }
+
+  .get-otp-btn-primary {
+    background: var(--primary-color) !important;
     padding: 15px 40px !important;
     border-radius: none !important;
   }
