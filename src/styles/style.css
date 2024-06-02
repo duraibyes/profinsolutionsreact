@@ -1,25 +1,25 @@
 :root {
   --primary-color: #f38705;
-  --primary-color1: #E9651A;
+  --primary-color1: #e9651a;
   --secondary-color: #fafafa;
   --secondary-color1: #f5f5f5;
-  --secondary-color2: #F6F6F6;
+  --secondary-color2: #f6f6f6;
   --head-color: #16243e;
   --text-color1: #666666;
   --text-color2: #b3b3b3;
   --text-color3: #696969;
   --button-color1: #797978;
-  --section-color1: #FCFCFC;
+  --section-color1: #fcfcfc;
 }
 
 .text-primary1 {
-    color: var(--primary-color1) !important;
+  color: var(--primary-color1) !important;
 }
 .text-black {
-    color: black !important;
+  color: black !important;
 }
 .section-color1 {
-    background-color: var(--section-color1);
+  background-color: var(--section-color1);
 }
 .flex {
   display: flex !important;
@@ -66,20 +66,20 @@
   color: var(--primary-color) !important;
 }
 .about-card {
-    background-color: var(--secondary-color2);
-    padding: 21px;
-    border-radius: 6px;
-    width: 100%;
+  background-color: var(--secondary-color2);
+  padding: 21px;
+  border-radius: 6px;
+  width: 100%;
 }
 
 .about-card .text-primary1 {
-    font-size: 32px !important;
-    font-weight: 900;
-    letter-spacing: 3px !important;
+  font-size: 32px !important;
+  font-weight: 900;
+  letter-spacing: 3px !important;
 }
 
 .about-card .text-black {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .spinner-logo {
@@ -125,15 +125,30 @@
 }
 
 .about-text-section {
-    padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 .border-left-disabled {
-  border-left: 5px solid var(--button-color1) !important
+  border-left: 5px solid var(--button-color1) !important;
 }
 
 .border-left-primary {
-  border-left: 5px solid var(--primary-color) !important
+  border-left: 5px solid var(--primary-color) !important;
+}
+
+.input-otp {
+  letter-spacing: 30px;
+  text-align: center;
+}
+.input-no {
+  margin-left: 5px !important;
+  letter-spacing: 2px !important;
+}
+.contact-text1 {
+  padding: 10px 10px !important;
+}
+.contact-text2 {
+  padding: 0px 20px !important;
 }
 
 @media (min-width: 600px) {
@@ -172,5 +187,19 @@
   }
   .about-text-section {
     padding: 0px 60px;
+  }
+  .input-otp {
+    letter-spacing: 30px;
+    text-align: center;
+  }
+  .input-no {
+    margin-left: 5px !important;
+    letter-spacing: 2px !important;
+  }
+  .contact-text1 {
+    padding: 20px 128px !important;
+  }
+  .contact-text2 {
+    padding: 0px 180px !important;
   }
 }

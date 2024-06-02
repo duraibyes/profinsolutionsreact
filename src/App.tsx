@@ -7,6 +7,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./components/pages/Home/Home";
 import Loader from "./components/Loader";
 import { useEffect, useState } from "react";
+import Loans from "./components/pages/Loan/Loans";
+import ContactInfo from "./components/layouts/ContactInfo";
 
 const theme = createTheme({
   palette: {
@@ -30,7 +32,6 @@ function App() {
       clearTimeout(timer1);
     };
   }, [])
-  
 
   return (
     <ThemeProvider theme={theme}>
@@ -44,7 +45,9 @@ function App() {
             <NavBar />
             <Routes>
               <Route path="/" element={<Home />}></Route>
+              <Route path="/loan/bussiness-loan" element={<Loans />}></Route>
             </Routes>
+            <ContactInfo />
             <Footer />
           </Router>
         )}
