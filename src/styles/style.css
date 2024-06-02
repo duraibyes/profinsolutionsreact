@@ -150,6 +150,15 @@
 .contact-text2 {
   padding: 0px 20px !important;
 }
+.loan-img {
+  padding: 15px;
+  border: 1px solid #d1cdcd17;
+  border-radius: 80px;
+  box-shadow: 0px 4px 0px 0px #ddd;
+}
+.loan-img img {
+  width: 75px;
+}
 
 @media (min-width: 600px) {
   .flex-box {
@@ -201,5 +210,14 @@
   }
   .contact-text2 {
     padding: 0px 180px !important;
+  }
+  .loan-img {
+    padding: 15px;
+    border: 1px solid #d1cdcd17;
+    border-radius: 80px;
+    box-shadow: 0px 4px 0px 0px #ddd;
+  }
+  .loan-img img {
+    width: 75px;
   }
 }

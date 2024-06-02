@@ -34,14 +34,14 @@ const LoanTabs = () => {
       textColor="primary"
       aria-label="scrollable force tabs example"
     >
-      <Tab label="Business Loan" icon={<img src={BussinessLoanICon} />} {...a11yProps(0)} />
-      <Tab label="Professional Loan" icon={<img src={ProfessionalLoanIcon} />} {...a11yProps(1)} />
-      <Tab label="Personal Loan" icon={<img src={PersonalLoanIcon} />} {...a11yProps(2)} />
-      <Tab label="Home Loan" icon={<img src={HomeLoanIcon} />} {...a11yProps(3)} />
-      <Tab label="Mortgage Loan" icon={<img src={MortgageLoanIcon} />} {...a11yProps(4)} />
-      <Tab label="Medical Equipment Loan" icon={<img src={MedicalEquipmentLoanIcon} />} {...a11yProps(5)} />
-      <Tab label="Industry Machinery Loan" icon={<img src={IndustryMachenaryLoanIcon} />} {...a11yProps(6)} />
-      <Tab label="SME Loan" icon={<img src={SMELoanIcon} />} {...a11yProps(7)} />
+      <Tab label="Business Loan" icon={<span className="loan-img"><img src={BussinessLoanICon} /></span>} {...a11yProps(0)} />
+      <Tab label="Professional Loan" icon={<span className="loan-img"><img src={ProfessionalLoanIcon} /></span>} {...a11yProps(1)} />
+      <Tab label="Personal Loan" icon={<span className="loan-img"><img src={PersonalLoanIcon} /></span>} {...a11yProps(2)} />
+      <Tab label="Home Loan" icon={<span className="loan-img"><img src={HomeLoanIcon} /></span>} {...a11yProps(3)} />
+      <Tab label="Mortgage Loan" icon={<span className="loan-img"><img src={MortgageLoanIcon} /></span>} {...a11yProps(4)} />
+      <Tab label="Medical Equipment Loan" icon={<span className="loan-img"><img src={MedicalEquipmentLoanIcon} /></span>} {...a11yProps(5)} />
+      <Tab label="Industry Machinery Loan" icon={<span className="loan-img"><img src={IndustryMachenaryLoanIcon} /></span>} {...a11yProps(6)} />
+      <Tab label="SME Loan" icon={<span className="loan-img"><img src={SMELoanIcon} /></span>} {...a11yProps(7)} />
     </Tabs>
   );
 };
