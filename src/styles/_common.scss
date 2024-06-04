@@ -248,3 +248,25 @@
 .mt-8 {
     margin-top: 40px !important;
 }
+
+.MuiInputBase-formControl {
+    border-radius: 0px !important;
+    background: #f9f9f9
+}
+
+.primary-button {
+    background-color: var(--primary-color) !important;
+    color: white;
+    padding: 20px !important;
+    font-weight: 600;
+    font-family:
+    'Jost';
+}
+.primary-button:hover {
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    background-color: white !important;
+}
+.Mui-error {
+    color: #d32f2f !important;
+}
