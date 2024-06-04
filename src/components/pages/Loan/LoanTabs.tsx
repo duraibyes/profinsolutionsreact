@@ -10,7 +10,6 @@ import IndustryMachenaryLoanIcon from '../../../assets/breakdown.svg';
 import SMELoanIcon from '../../../assets/secured-loan.svg';
 import LoanTabContent from "./LoanTabContent";
 
-
 function a11yProps(index: any) {
   return {
     id: `scrollable-force-tab-${index}`,
@@ -35,7 +34,6 @@ const LoanTabs = () => {
     console.log(newValue, 'vnew alue')
     setValue(newValue);
   };
-
 
   return (
     <>
