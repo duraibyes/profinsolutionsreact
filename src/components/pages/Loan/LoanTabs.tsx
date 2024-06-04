@@ -16,6 +16,16 @@ function a11yProps(index: any) {
     'aria-controls': `scrollable-force-tabpanel-${index}`,
   };
 }
+interface TabLabelProps {
+  icon: string;
+  label: string;
+}
+
+const TabLabel: React.FC<TabLabelProps> = ({icon, label}) => {
+  return (
+    <div ><span className="loan-img"><img src={icon} /></span><div className="inner-bg">{label}</div></div>
+  );
+}
 
 const LoanTabs = () => {
   const [value, setValue] = useState(0);
@@ -34,14 +44,14 @@ const LoanTabs = () => {
       textColor="primary"
       aria-label="scrollable force tabs example"
     >
-      <Tab label="Business Loan" icon={<span className="loan-img"><img src={BussinessLoanICon} /></span>} {...a11yProps(0)} />
-      <Tab label="Professional Loan" icon={<span className="loan-img"><img src={ProfessionalLoanIcon} /></span>} {...a11yProps(1)} />
-      <Tab label="Personal Loan" icon={<span className="loan-img"><img src={PersonalLoanIcon} /></span>} {...a11yProps(2)} />
-      <Tab label="Home Loan" icon={<span className="loan-img"><img src={HomeLoanIcon} /></span>} {...a11yProps(3)} />
-      <Tab label="Mortgage Loan" icon={<span className="loan-img"><img src={MortgageLoanIcon} /></span>} {...a11yProps(4)} />
-      <Tab label="Medical Equipment Loan" icon={<span className="loan-img"><img src={MedicalEquipmentLoanIcon} /></span>} {...a11yProps(5)} />
-      <Tab label="Industry Machinery Loan" icon={<span className="loan-img"><img src={IndustryMachenaryLoanIcon} /></span>} {...a11yProps(6)} />
-      <Tab label="SME Loan" icon={<span className="loan-img"><img src={SMELoanIcon} /></span>} {...a11yProps(7)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={BussinessLoanICon} label="Bussiness Loan" />} {...a11yProps(0)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={ProfessionalLoanIcon} label="Professional Loan" />} {...a11yProps(1)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={PersonalLoanIcon} label="Personal Loan" />} {...a11yProps(2)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={HomeLoanIcon} label="Home Loan" />} {...a11yProps(3)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={MortgageLoanIcon} label="Mortgage Loan" />} {...a11yProps(4)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={MedicalEquipmentLoanIcon} label="Medical Equipment Loan" />} {...a11yProps(5)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={IndustryMachenaryLoanIcon} label="Industry Machinery Loan" />} {...a11yProps(6)} />
+      <Tab className="main-tab" label="" icon={<TabLabel icon={SMELoanIcon} label="SME Loan" />} {...a11yProps(7)} />
     </Tabs>
   );
 };

@@ -155,9 +155,33 @@
   border: 1px solid #d1cdcd17;
   border-radius: 80px;
   box-shadow: 0px 4px 0px 0px #ddd;
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 27%;
+  background: white;
 }
 .loan-img img {
   width: 75px;
+}
+
+.inner-bg {
+  width: 200px;
+  bottom: 0;
+  margin-top: 60px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding: 20px;
+  height: 122px;
+  border: 1px solid #ddd;
+}
+.main-tab {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.main-tab.Mui-selected .inner-bg {
+  background: var(--primary-color);
 }
 
 @media (min-width: 600px) {
