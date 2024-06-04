@@ -35,9 +35,9 @@ export default function SuccessDialog({open, setOpen}:{open:boolean;setOpen:Reac
         <DialogContent className='py-30'>
           <DialogContentText id="alert-dialog-slide-description"  className='flex items-center justify-center flex-column px-20'>
             <DialogTitle><img src={SuccessIcon} /></DialogTitle>
-            <Typography className='text-primary fw-700 fs-22'>Thank you for submitting your Quotation</Typography>
-            <Typography className='fs-14 mt-3'>Our Executive will reaach you shortly! </Typography>
-            <Typography className='fs-14 mb-2'>If you have any query, Please feel free to contact us +91-9876543210</Typography>
+            <Typography className='text-primary fw-700 fs-22 text-center'>Thank you for submitting your Quotation</Typography>
+            <Typography className='fs-14 mt-3 text-center'>Our Executive will reaach you shortly! </Typography>
+            <Typography className='fs-14 mb-2 text-center'>If you have any query, Please feel free to contact us +91-9876543210</Typography>
           </DialogContentText>
         </DialogContent>
        
