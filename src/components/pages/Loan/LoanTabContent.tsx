@@ -4,6 +4,7 @@ import rating from "../../../assets/rating.svg";
 import thumbsup from "../../../assets/thumbs-up.svg";
 import customerServiceIcon from "../../../assets/customer-service.svg";
 import WarrantyIcon from "../../../assets/warranty.svg";
+import BussinessLoanForm from "../form/BussinessLoanForm";
 
 const LoanTabContent = ({ activeTab }: { activeTab: number }) => {
   console.log(" activeTab ", activeTab);
@@ -63,7 +64,9 @@ const LoanTabContent = ({ activeTab }: { activeTab: number }) => {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} md={6}></Grid>
+      <Grid item xs={12} md={6}>
+        <BussinessLoanForm activeTab={activeTab} />
+      </Grid>
     </Grid>
   );
 };
