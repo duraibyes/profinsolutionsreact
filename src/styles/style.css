@@ -33,6 +33,9 @@
 .flex-row {
   flex-direction: row !important;
 }
+.flex-column {
+  flex-direction: column !important;
+}
 .flex-wrap {
   flex-wrap: wrap !important;
 }

@@ -17,7 +17,6 @@ const HomeInputSection = ({ setMobileNo, mobileNo }: Props) => {
   const [verifyOTP, setVerifyOTP] = useState<string>('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(' engtering number')
     const value = e.target.value.replace(/\D/g, "");
     setMobileNo(value);
   };
