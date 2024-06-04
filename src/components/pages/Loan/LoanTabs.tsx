@@ -1,4 +1,4 @@
-import { Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { useState } from "react";
 import BussinessLoanICon from '../../../assets/money-bag.svg';
 import ProfessionalLoanIcon from '../../../assets/businessman 1.svg';
@@ -8,6 +8,7 @@ import MortgageLoanIcon from '../../../assets/Vector.svg';
 import MedicalEquipmentLoanIcon from '../../../assets/ct-scan.svg';
 import IndustryMachenaryLoanIcon from '../../../assets/breakdown.svg';
 import SMELoanIcon from '../../../assets/secured-loan.svg';
+import LoanTabContent from "./LoanTabContent";
 
 
 function a11yProps(index: any) {
@@ -31,11 +32,15 @@ const LoanTabs = () => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    console.log(newValue, 'vnew alue')
     setValue(newValue);
   };
 
+
   return (
+    <>
     <Tabs
+      sx={{ marginBottom: '40px'}}
       value={value}
       onChange={handleChange}
       variant="scrollable"
@@ -53,6 +58,8 @@ const LoanTabs = () => {
       <Tab className="main-tab" label="" icon={<TabLabel icon={IndustryMachenaryLoanIcon} label="Industry Machinery Loan" />} {...a11yProps(6)} />
       <Tab className="main-tab" label="" icon={<TabLabel icon={SMELoanIcon} label="SME Loan" />} {...a11yProps(7)} />
     </Tabs>
+    <LoanTabContent activeTab={value} />
+    </>
   );
 };
 
