@@ -102,7 +102,7 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
         if(response.data.error === 0) {
           setOpen(true);
           setTimeout(() => {
-            navigate('/loans');
+            navigate('/');
           }, 1000)
         }
        

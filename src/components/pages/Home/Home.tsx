@@ -8,12 +8,18 @@ import HomeBanner from "../../../assets/homebanner.svg";
 import HomeInputSection from "./HomeInputSection";
 import LoanBulletList from "./LoanBulletList";
 import About from "../about/About";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-
+  const navigate = useNavigate();
   const [mobileNo, setMobileNo] = useState<string>('');
-
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken) {
+      navigate("/loans");
+    }
+  }, [navigate]);
   return (
     <>
     <Grid container className="main-section">

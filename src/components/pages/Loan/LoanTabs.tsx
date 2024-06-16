@@ -54,8 +54,10 @@ const LoanTabs = () => {
     setValue({ index: newValue, slug: selectedItem.slug });
   };
   useEffect(() => {
-    const selectedItem = data.data ? data.data[0] : "";
-    setValue({ index: 0, slug: selectedItem.slug });
+    if (data) {
+      const selectedItem = data.data ? data.data[0] : "";
+      setValue({ index: 0, slug: selectedItem.slug });
+    }
   }, [])
   
 

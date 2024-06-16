@@ -18,12 +18,17 @@ import {
   ListItemText,
 } from "@mui/material";
 import UserIcon from "../../assets/userIcon.svg";
+import { NavLink } from "react-router-dom";
+
+interface UserDetails {
+  mobile_no: string;
+  name: string;
+  updated_at: string;
+  created_at: string;
+  id: number;
+}
 
 interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window?: () => Window;
 }
 const drawerWidth = 240;
@@ -35,7 +40,7 @@ export default function Navbar(props: Props) {
     setMobileOpen((prevState) => !prevState);
   };
   const drawer = (
-    <Box  onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         <img src={Logo} />
       </Typography>
@@ -67,9 +72,17 @@ export default function Navbar(props: Props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  const userDetails = localStorage.getItem('user');
+  const userDetailsString = localStorage.getItem("user");
+  let userDetails: UserDetails | null = null;
+
+  if (userDetailsString) {
+    // Parse the string to an object
+    userDetails = JSON.parse(userDetailsString) as UserDetails;
+    console.log("userDetails", userDetails);
+  }
+
   return (
-    <Grid container  className="main-section">
+    <Grid container className="main-section">
       <Grid item xs={12}>
         <AppBar
           position="static"
@@ -79,9 +92,11 @@ export default function Navbar(props: Props) {
             <img src={Logo} />
             <Box sx={{ flexGrow: 1 }} />
             <Box className="flex-box">
-              <Link href="#" underline="none" className="active">
+              <NavLink className="active"
+              to="/"
+              >
                 Home
-              </Link>
+              </NavLink>
               <Link href="#" underline="none">
                 About Us
               </Link>
@@ -89,21 +104,24 @@ export default function Navbar(props: Props) {
                 Reach Us
               </Link>
               {userDetails ? (
-                 <Typography className='link'>
-                 <img src={UserIcon} style={{width:'16px', paddingRight: '5px'}}/>
-               {userDetails.name}
-               </Typography>
+                <Typography className="link">
+                  <img
+                    src={UserIcon}
+                    style={{ width: "16px", paddingRight: "5px" }}
+                  />
+                  {userDetails?.name}
+                </Typography>
               ) : (
                 <Link
-                component="button"
-                variant="body2"
-                className="link"
-                onClick={() => {
-                  console.info("I'm a button.");
-                }}
-              >
-                Login
-              </Link>
+                  component="button"
+                  variant="body2"
+                  className="link"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                >
+                  Login
+                </Link>
               )}
             </Box>
             <Box className="more-icon">
