@@ -67,7 +67,7 @@ export default function Navbar(props: Props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
+  const userDetails = localStorage.getItem('user');
   return (
     <Grid container  className="main-section">
       <Grid item xs={12}>
@@ -88,7 +88,13 @@ export default function Navbar(props: Props) {
               <Link href="#" underline="none">
                 Reach Us
               </Link>
-              <Link
+              {userDetails ? (
+                 <Typography className='link'>
+                 <img src={UserIcon} style={{width:'16px', paddingRight: '5px'}}/>
+               {userDetails.name}
+               </Typography>
+              ) : (
+                <Link
                 component="button"
                 variant="body2"
                 className="link"
@@ -98,10 +104,7 @@ export default function Navbar(props: Props) {
               >
                 Login
               </Link>
-              {/* <Typography className='link'>
-              <img src={UserIcon} style={{width:'16px', paddingRight: '5px'}}/>
-            User
-            </Typography> */}
+              )}
             </Box>
             <Box className="more-icon">
               <IconButton

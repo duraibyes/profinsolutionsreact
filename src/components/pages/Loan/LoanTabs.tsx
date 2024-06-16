@@ -1,19 +1,28 @@
-import { Box, Tab, Tabs } from "@mui/material";
-import { useState } from "react";
-import BussinessLoanICon from '../../../assets/money-bag.svg';
-import ProfessionalLoanIcon from '../../../assets/businessman 1.svg';
-import PersonalLoanIcon from '../../../assets/person 1.svg';
-import HomeLoanIcon from '../../../assets/real-estate.svg';
-import MortgageLoanIcon from '../../../assets/Vector.svg';
-import MedicalEquipmentLoanIcon from '../../../assets/ct-scan.svg';
-import IndustryMachenaryLoanIcon from '../../../assets/breakdown.svg';
-import SMELoanIcon from '../../../assets/secured-loan.svg';
+import { Tab, Tabs, Theme } from "@mui/material";
+import { useEffect, useState } from "react";
 import LoanTabContent from "./LoanTabContent";
+import { makeStyles } from "@mui/styles";
+
+import {
+  LoanCategoryProps,
+  useLoanCategory,
+} from "../../../services/LoanCategoryApi";
+
+const useStyles = makeStyles((theme: Theme) => ({
+  tab: {
+    "&.Mui-selected": {
+      fontWeight: "bold", // Example: Customize the selected tab style
+    },
+    "& .MuiTabs-indicator": {
+      backgroundColor: theme.palette.primary.main, // Example: Customize the indicator color
+    },
+  },
+}));
 
 function a11yProps(index: any) {
   return {
     id: `scrollable-force-tab-${index}`,
-    'aria-controls': `scrollable-force-tabpanel-${index}`,
+    "aria-controls": `scrollable-force-tabpanel-${index}`,
   };
 }
 interface TabLabelProps {
@@ -21,42 +30,60 @@ interface TabLabelProps {
   label: string;
 }
 
-const TabLabel: React.FC<TabLabelProps> = ({icon, label}) => {
+const TabLabel: React.FC<TabLabelProps> = ({ icon, label }) => {
   return (
-    <div ><span className="loan-img"><img src={icon} /></span><div className="inner-bg">{label}</div></div>
+    <div>
+      <span className="loan-img">
+        <img src={icon} />
+      </span>
+      <div className="inner-bg">{label}</div>
+    </div>
   );
-}
+};
 
 const LoanTabs = () => {
-  const [value, setValue] = useState(0);
+
+  const classes = useStyles();
+
+  const [value, setValue] = useState({ index: 0, slug: "" });
+
+  const { data } = useLoanCategory();
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    console.log(newValue, 'vnew alue')
-    setValue(newValue);
+    const selectedItem = data.data ? data.data[newValue] : "";
+    setValue({ index: newValue, slug: selectedItem.slug });
   };
+  useEffect(() => {
+    const selectedItem = data.data ? data.data[0] : "";
+    setValue({ index: 0, slug: selectedItem.slug });
+  }, [])
+  
 
   return (
     <>
-    <Tabs
-      sx={{ marginBottom: '40px'}}
-      value={value}
-      onChange={handleChange}
-      variant="scrollable"
-      scrollButtons={true}
-      indicatorColor="primary"
-      textColor="primary"
-      aria-label="scrollable force tabs example"
-    >
-      <Tab className="main-tab" label="" icon={<TabLabel icon={BussinessLoanICon} label="Bussiness Loan" />} {...a11yProps(0)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={ProfessionalLoanIcon} label="Professional Loan" />} {...a11yProps(1)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={PersonalLoanIcon} label="Personal Loan" />} {...a11yProps(2)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={HomeLoanIcon} label="Home Loan" />} {...a11yProps(3)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={MortgageLoanIcon} label="Mortgage Loan" />} {...a11yProps(4)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={MedicalEquipmentLoanIcon} label="Medical Equipment Loan" />} {...a11yProps(5)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={IndustryMachenaryLoanIcon} label="Industry Machinery Loan" />} {...a11yProps(6)} />
-      <Tab className="main-tab" label="" icon={<TabLabel icon={SMELoanIcon} label="SME Loan" />} {...a11yProps(7)} />
-    </Tabs>
-    <LoanTabContent activeTab={value} />
+      <Tabs
+        sx={{ marginBottom: "40px" }}
+        value={value.index}
+        onChange={handleChange}
+        variant="scrollable"
+        scrollButtons={true}
+        indicatorColor="primary"
+        textColor="primary"
+        aria-label="scrollable force tabs example"
+        className={classes.tab}
+      >
+        {data &&
+          data.data.map((item: LoanCategoryProps, index: number) => (
+            <Tab
+              key={item.id}
+              className="main-tab"
+              label=""
+              icon={<TabLabel icon={item.icon_url} label={item.name} />}
+              {...a11yProps(index)}
+            />
+          ))}
+      </Tabs>
+      <LoanTabContent activeSlug={value.slug} />
     </>
   );
 };

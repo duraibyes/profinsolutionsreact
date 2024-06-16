@@ -5,8 +5,9 @@ import {
   InputAdornment,
   OutlinedInput,
 } from "@mui/material";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, memo, useCallback, useEffect, useState } from "react";
 import SubmitOtp from "./SubmitOtp";
+import axios from "axios";
 type Props = {
   setMobileNo: Dispatch<SetStateAction<string>>;
   mobileNo: string;
@@ -16,25 +17,36 @@ const HomeInputSection = ({ setMobileNo, mobileNo }: Props) => {
   const [isOtpSent, setIsOtpSent] = useState<boolean>(false);
   const [verifyOTP, setVerifyOTP] = useState<string>('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, "");
     setMobileNo(value);
-  };
+  }, []);
 
-  const getOTP = () => {
+  const getOTP = async () => {
     console.log(" get otp called");
-    setIsOtpSent(true);
-  };
+    try {
+      const response = await axios.post('http://localhost:8000/api/send-otp', {
+        mobile_no: mobileNo,
+      });
+      setIsOtpSent(true);
+      setVerifyOTP(response.data.otp); // Assuming the API returns the OTP
+    } catch (error) {
+      console.error('Error sending OTP:', error);
+    } finally {
+    }
+  };  
 
   useEffect(() => {
-    setVerifyOTP('0000');
-  }, [])
+  console.log(' shome input effec is called')
+  }, [isOtpSent])
   
+
+  console.log('  verifyOTP ', verifyOTP)
 
   return (
     <Box className="py-20 flex">
       {isOtpSent ? (
-        <SubmitOtp verifyOTP={verifyOTP} />
+        <SubmitOtp verifyOTP={verifyOTP} mobileNo={mobileNo} />
       ) : (
         <>
           <FormControl
@@ -77,4 +89,4 @@ const HomeInputSection = ({ setMobileNo, mobileNo }: Props) => {
   );
 };
 
-export default HomeInputSection;
+export default memo(HomeInputSection);

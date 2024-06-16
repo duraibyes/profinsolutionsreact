@@ -9,6 +9,7 @@ import Loader from "./components/Loader";
 import { useEffect, useState } from "react";
 import Loans from "./components/pages/Loan/Loans";
 import ContactInfo from "./components/layouts/ContactInfo";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const theme = createTheme({
   palette: {
@@ -19,40 +20,42 @@ const theme = createTheme({
 });
 
 const loading = true;
+const queryClient = new QueryClient();
 
 function App() {
-
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    console.log(' entering into efferct')
-    let timer1 = setTimeout(() => setLoader(false),1000);
+    console.log(" entering into efferct");
+    let timer1 = setTimeout(() => setLoader(false), 1000);
     return () => {
-      console.log(' enterring itn o unmout')
+      console.log(" enterring itn o unmout");
       clearTimeout(timer1);
     };
-  }, [])
+  }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <GlobalStylesComponent />
-      <section style={{ minHeight: '100vh'}}>
-        {loader ? (
-          <Loader />
-        ) : (
-          <Router>
-            <NavBar />
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/loan/bussiness-loan" element={<Loans />}></Route>
-            </Routes>
-            <ContactInfo />
-            <Footer />
-          </Router>
-        )}
-      </section>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStylesComponent />
+        <section style={{ minHeight: "100vh" }}>
+          {loader ? (
+            <Loader />
+          ) : (
+            <Router>
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/loans" element={<Loans />}></Route>
+              </Routes>
+              <ContactInfo />
+              <Footer />
+            </Router>
+          )}
+        </section>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 

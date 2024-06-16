@@ -6,8 +6,18 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import Successdialog from "../../dialog/SuccessDialog";
+import { BusinessFormProps } from "./BussinessLoanForm";
+import axios from "axios";
+import { ApiPath } from "../../../services/LoanCategoryApi";
+import { useNavigate } from "react-router-dom";
 
-const ThankyouForm = () => {
+type ThankyouFormProps = {
+  formFields: BusinessFormProps;
+};
+
+const ThankyouForm = ({formFields}: ThankyouFormProps) => {
+
+  const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -33,29 +43,37 @@ const ThankyouForm = () => {
   };
 
   const handleMobileNoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMobileNo(event.target.value);
+    const value = event.target.value.replace(/\D/g, "");
+    setMobileNo(value);
     setErrors({ ...errors, mobileNo: false });
   };
 
   const handleWhatsappNoChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setWhatsappNo(event.target.value);
+    const value = event.target.value.replace(/\D/g, "");
+    setWhatsappNo(value);
     setErrors({ ...errors, whatsappNo: false });
   };
 
   const handleAlterNoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAlterNo(event.target.value);
+    const value = event.target.value.replace(/\D/g, "");
+    setAlterNo(value);
     setErrors({ ...errors, alterNo: false });
+  };
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   const validateForm = () => {
     const newErrors = {
       name: name === "",
-      email: email === "",
-      mobileNo: mobileNo === "",
-      whatsappNo: whatsappNo === "",
-      alterNo: alterNo === "",
+      email: email === "" || !validateEmail(email),
+      mobileNo: mobileNo.length !== 10,
+      whatsappNo: whatsappNo.length !== 10,
+      alterNo: alterNo.length !== 10,
     };
 
     setErrors(newErrors);
@@ -63,11 +81,37 @@ const ThankyouForm = () => {
     return !Object.values(newErrors).includes(true);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
-      // Submit form logic here
-      console.log("Form is valid. Submitting form...");
-      setOpen(true);
+      const updatedFormFields = {
+        ...formFields,
+        name,
+        email,
+        mobileNo,
+        whatsappNo,
+        alterNo,
+      };
+      try {
+        const bearerToken =  localStorage.getItem("authToken");
+        const response = await axios.post(ApiPath + 'loan-category', updatedFormFields, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+          },
+        });
+
+        if(response.data.error === 0) {
+          setOpen(true);
+          setTimeout(() => {
+            navigate('/loans');
+          }, 1000)
+        }
+       
+        console.log('OTP sent:', response.data);
+      } catch (error) {
+        console.error('Error sending OTP:', error);
+      } finally {
+      }
+      console.log("Form is valid. Submitting form with data:", updatedFormFields);
     } else {
       console.log("Form is invalid. Please fill in all fields.");
     }
@@ -95,17 +139,18 @@ const ThankyouForm = () => {
         />
         <TextField
           error={errors.mobileNo}
-          helperText={errors.mobileNo ? "Mobile No is required" : ""}
+          helperText={errors.mobileNo ? "Mobile No is required or Not valid" : ""}
           id="outlined-basic"
           label="Mobile No"
           className="pt-1 mb-2"
           variant="outlined"
           value={mobileNo}
+          inputProps={{ maxLength: 10 }} 
           onChange={handleMobileNoChange}
         />
         <TextField
           error={errors.email}
-          helperText={errors.email ? "Email is required" : ""}
+          helperText={errors.email ? "Email is required or Not valid" : ""}
           id="outlined-basic"
           label="Email Address"
           className="pt-1 mb-2"
@@ -116,22 +161,24 @@ const ThankyouForm = () => {
 
         <TextField
           error={errors.whatsappNo}
-          helperText={errors.whatsappNo ? "WhatsApp No is required" : ""}
+          helperText={errors.whatsappNo ? "WhatsApp No is required or Not valid" : ""}
           id="outlined-basic"
           label="WhatsApp No"
           className="pt-1 mb-2"
           variant="outlined"
           value={whatsappNo}
+          inputProps={{ maxLength: 10 }} 
           onChange={handleWhatsappNoChange}
         />
         <TextField
           error={errors.alterNo}
-          helperText={errors.alterNo ? "Alternative No is required" : ""}
+          helperText={errors.alterNo ? "Alternative No is required or Not valid" : ""}
           id="outlined-basic"
           label="Alternative No"
           className="pt-1 mb-2"
           variant="outlined"
           value={alterNo}
+          inputProps={{ maxLength: 10 }} 
           onChange={handleAlterNoChange}
         />
 
