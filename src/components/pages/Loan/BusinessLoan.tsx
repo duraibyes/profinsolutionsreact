@@ -10,7 +10,6 @@ type BusinessProps = {
     info: LoanCategoryProps;
 }
 const BusinessLoan = ({info}:BusinessProps) => {
-    console.log( '  info ', info);
   return (
     <Grid
       container

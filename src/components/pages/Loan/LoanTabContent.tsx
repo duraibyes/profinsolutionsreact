@@ -3,6 +3,7 @@ import { useGetLoanCategory } from "../../../services/LoanCategoryApi";
 import BusinessLoan from "./BusinessLoan";
 import Loader from "../../Loader";
 import ProfessionalLoan from "./ProfessionalLoan";
+import PersonalLoan from "./PersonalLoan";
 interface LoanTabContentProps {
   activeSlug: string;
 }
@@ -27,6 +28,9 @@ const LoanTabContent: React.FC<LoanTabContentProps> = ({ activeSlug }) => {
         break;
       case "professional-loan":
         renderedComponent = <ProfessionalLoan info={data?.info} />;
+        break;
+      case "personal-loan":
+        renderedComponent = <PersonalLoan info={data?.info} />;
         break;
       case "medical-equipment-loan":
         break;

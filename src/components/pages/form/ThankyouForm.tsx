@@ -11,9 +11,10 @@ import axios from "axios";
 import { ApiPath } from "../../../services/LoanCategoryApi";
 import { useNavigate } from "react-router-dom";
 import { ProfessionalFormProps } from "./ProfessionalLoanForm";
+import { PersonalFormProps } from "./PersonalLoanForm";
 
 type ThankyouFormProps = {
-  formFields: BusinessFormProps | ProfessionalFormProps;
+  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps;
 };
 
 const ThankyouForm = ({formFields}: ThankyouFormProps) => {
