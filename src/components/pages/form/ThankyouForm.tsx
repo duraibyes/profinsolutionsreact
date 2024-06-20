@@ -10,15 +10,17 @@ import { BusinessFormProps } from "./BussinessLoanForm";
 import axios from "axios";
 import { ApiPath } from "../../../services/LoanCategoryApi";
 import { useNavigate } from "react-router-dom";
+import { ProfessionalFormProps } from "./ProfessionalLoanForm";
 
 type ThankyouFormProps = {
-  formFields: BusinessFormProps;
+  formFields: BusinessFormProps | ProfessionalFormProps;
 };
 
 const ThankyouForm = ({formFields}: ThankyouFormProps) => {
 
   const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
+  const [isFormSubmit, setIsFormSubmit] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [mobileNo, setMobileNo] = useState<string>("");
@@ -83,6 +85,7 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
 
   const handleSubmit = async () => {
     if (validateForm()) {
+      setIsFormSubmit(true);
       const updatedFormFields = {
         ...formFields,
         name,
@@ -103,13 +106,14 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
           setOpen(true);
           setTimeout(() => {
             navigate('/');
-          }, 1000)
+          }, 3000)
         }
        
-        console.log('OTP sent:', response.data);
+        console.log('responst data', response.data);
       } catch (error) {
         console.error('Error sending OTP:', error);
       } finally {
+        setIsFormSubmit(false);
       }
       console.log("Form is valid. Submitting form with data:", updatedFormFields);
     } else {
@@ -182,7 +186,7 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
           onChange={handleAlterNoChange}
         />
 
-        <Button className="primary-button mt-6" onClick={handleSubmit}>
+        <Button className="primary-button mt-6" disabled={isFormSubmit} onClick={handleSubmit}>
           Submit
         </Button>
       </FormControl>

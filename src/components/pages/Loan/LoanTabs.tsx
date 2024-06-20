@@ -58,9 +58,9 @@ const LoanTabs = () => {
       const selectedItem = data.data ? data.data[0] : "";
       setValue({ index: 0, slug: selectedItem.slug });
     }
-  }, [])
+  }, [data])
   
-
+  console.log(' data in loan tab ', data)
   return (
     <>
       <Tabs
