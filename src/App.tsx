@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Loans from "./components/pages/Loan/Loans";
 import ContactInfo from "./components/layouts/ContactInfo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProtectedRoute from "./services/ProtectedRoute";
 
 const theme = createTheme({
   palette: {
@@ -47,7 +48,7 @@ function App() {
               <NavBar />
               <Routes>
                 <Route path="/" element={<Home />}></Route>
-                <Route path="/loans" element={<Loans />}></Route>
+                <Route path="/loans" element={<ProtectedRoute element={Loans} />}></Route>
               </Routes>
               <ContactInfo />
               <Footer />

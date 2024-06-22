@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import ProfessionalLoanForm from "../form/ProfessionalLoanForm";
-import Bg1 from "../../../assets/business-loan.jpg";
+import Bg1 from "../../../assets/professional-loan.jpg";
 import rating from "../../../assets/rating.svg";
 import thumbsup from "../../../assets/thumbs-up.svg";
 import customerServiceIcon from "../../../assets/customer-service.svg";

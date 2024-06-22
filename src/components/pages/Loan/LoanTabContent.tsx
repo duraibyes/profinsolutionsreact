@@ -7,6 +7,8 @@ import PersonalLoan from "./PersonalLoan";
 import HomeLoan from "./HomeLoan";
 import MortgageLoan from "./MortgageLoan";
 import MedicalEquipmentLoan from "./MedicalEquipmentLoan";
+import IndustryMachinaryLoan from "./IndustryMachinaryLoan";
+import SmeLoan from "./SmeLoan";
 interface LoanTabContentProps {
   activeSlug: string;
 }
@@ -43,6 +45,12 @@ const LoanTabContent: React.FC<LoanTabContentProps> = ({ activeSlug }) => {
         break;
       case "medical-equipment-loan":
         renderedComponent = <MedicalEquipmentLoan info={data?.info} />;
+        break;
+      case "industry-machinery-loan":
+        renderedComponent = <IndustryMachinaryLoan info={data?.info} />;
+        break;
+      case "sme-loan":
+        renderedComponent = <SmeLoan info={data?.info} />;
         break;
       // Add more cases as needed for other slugs
       default:

@@ -48,7 +48,7 @@ const LoanTabs = () => {
   const [value, setValue] = useState({ index: 0, slug: "" });
 
   const { data } = useLoanCategory();
-
+  console.log('  data ', data );
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     const selectedItem = data.data ? data.data[newValue] : "";
     setValue({ index: newValue, slug: selectedItem.slug });

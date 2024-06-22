@@ -1,13 +1,13 @@
 import { Box, Grid, Typography } from "@mui/material"
 import { LoanCategoryProps } from "../../../services/LoanCategoryApi"
-import MedicalEquipmentLoanForm from "../form/MedicalEquipmentLoanForm"
-import Bg1 from "../../../assets/medical-loan.jpg";
+import IndustryMachinaryLoanForm from "../form/IndustryMachinaryLoanForm"
+import Bg1 from "../../../assets/indusstry-machinery-loan.jpg";
 import rating from "../../../assets/rating.svg";
 import thumbsup from "../../../assets/thumbs-up.svg";
 import customerServiceIcon from "../../../assets/customer-service.svg";
 import WarrantyIcon from "../../../assets/warranty.svg";
 
-const MedicalEquipmentLoan = ({ info }: { info: LoanCategoryProps }) => {
+const IndustryMachinaryLoan = ({ info }: { info: LoanCategoryProps }) => {
   return (
     <Grid
       container
@@ -23,7 +23,7 @@ const MedicalEquipmentLoan = ({ info }: { info: LoanCategoryProps }) => {
           About the Loan
         </Typography>
         <Typography className="text-black fw-900 fs-30 pt-5">
-          Medical Equipment Loan - The Place where your need meets the want
+         Industry Machinery Loan - The Place where your need meets the want
         </Typography>
         <Typography className="pt-10">
           We are a reliable partner for clients as our loan processing services
@@ -65,10 +65,10 @@ const MedicalEquipmentLoan = ({ info }: { info: LoanCategoryProps }) => {
         </Box>
       </Grid>
       <Grid item xs={12} md={6}>
-        <MedicalEquipmentLoanForm id={info?.id} />
+        <IndustryMachinaryLoanForm id={info?.id} />
       </Grid>
     </Grid>
   )
 }
 
-export default MedicalEquipmentLoan
+export default IndustryMachinaryLoan

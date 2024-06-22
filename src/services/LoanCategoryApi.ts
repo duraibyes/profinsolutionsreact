@@ -35,6 +35,7 @@ export const useLoanCategory = () => {
 };
 
 export const useGetLoanCategory = (slug: string) => {
+  console.log('  defaultHeaders ', defaultHeaders);
   return useQuery({
     queryKey: [apiUrl + "/" + slug],
     queryFn: () =>

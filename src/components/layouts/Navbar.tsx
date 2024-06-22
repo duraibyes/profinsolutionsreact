@@ -72,14 +72,14 @@ export default function Navbar(props: Props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  const userDetailsString = localStorage.getItem("user");
-  let userDetails: UserDetails | null = null;
+  const [user, setUser] = React.useState<any>(null);
 
-  if (userDetailsString) {
-    // Parse the string to an object
-    userDetails = JSON.parse(userDetailsString) as UserDetails;
-    console.log("userDetails", userDetails);
-  }
+  React.useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
 
   return (
     <Grid container className="main-section">
@@ -101,13 +101,13 @@ export default function Navbar(props: Props) {
               <Link href="#" underline="none">
                 Reach Us
               </Link>
-              {userDetails ? (
+              {user ? (
                 <Typography className="link">
                   <img
                     src={UserIcon}
                     style={{ width: "16px", paddingRight: "5px" }}
                   />
-                  {userDetails?.name}
+                  {user?.name}
                 </Typography>
               ) : (
                 <NavLink className="" to="/">

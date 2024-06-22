@@ -14,9 +14,10 @@ import { ProfessionalFormProps } from "./ProfessionalLoanForm";
 import { PersonalFormProps } from "./PersonalLoanForm";
 import { HomeLoanFormProps } from "./HomeLoanForm";
 import { MedicalFormProps } from "./MedicalEquipmentLoanForm";
+import { SmeFormProps } from "./SmeLoanForm";
 
 type ThankyouFormProps = {
-  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps | HomeLoanFormProps | MedicalFormProps;
+  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps | HomeLoanFormProps | MedicalFormProps | SmeFormProps;
 };
 
 const ThankyouForm = ({formFields}: ThankyouFormProps) => {
