@@ -23,7 +23,7 @@ const HomeLoan = ({ info }: { info: LoanCategoryProps }) => {
           About the Loan
         </Typography>
         <Typography className="text-black fw-900 fs-30 pt-5">
-          Business Loan - The Place where your need meets the want
+          Home Loan - The Place where your need meets the want
         </Typography>
         <Typography className="pt-10">
           We are a reliable partner for clients as our loan processing services

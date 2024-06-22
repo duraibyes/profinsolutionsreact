@@ -5,6 +5,7 @@ import Loader from "../../Loader";
 import ProfessionalLoan from "./ProfessionalLoan";
 import PersonalLoan from "./PersonalLoan";
 import HomeLoan from "./HomeLoan";
+import MortgageLoan from "./MortgageLoan";
 interface LoanTabContentProps {
   activeSlug: string;
 }
@@ -35,6 +36,9 @@ const LoanTabContent: React.FC<LoanTabContentProps> = ({ activeSlug }) => {
         break;
       case "home-loan":
         renderedComponent = <HomeLoan info={data?.info} />;
+        break;
+      case "mortgage-loan":
+        renderedComponent = <MortgageLoan info={data?.info} />;
         break;
       case "medical-equipment-loan":
         break;
