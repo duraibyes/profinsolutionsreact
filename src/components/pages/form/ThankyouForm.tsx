@@ -12,9 +12,10 @@ import { ApiPath } from "../../../services/LoanCategoryApi";
 import { useNavigate } from "react-router-dom";
 import { ProfessionalFormProps } from "./ProfessionalLoanForm";
 import { PersonalFormProps } from "./PersonalLoanForm";
+import { HomeLoanFormProps } from "./HomeLoanForm";
 
 type ThankyouFormProps = {
-  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps;
+  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps | HomeLoanFormProps;
 };
 
 const ThankyouForm = ({formFields}: ThankyouFormProps) => {
