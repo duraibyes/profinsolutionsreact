@@ -13,9 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { ProfessionalFormProps } from "./ProfessionalLoanForm";
 import { PersonalFormProps } from "./PersonalLoanForm";
 import { HomeLoanFormProps } from "./HomeLoanForm";
+import { MedicalFormProps } from "./MedicalEquipmentLoanForm";
 
 type ThankyouFormProps = {
-  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps | HomeLoanFormProps;
+  formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps | HomeLoanFormProps | MedicalFormProps;
 };
 
 const ThankyouForm = ({formFields}: ThankyouFormProps) => {

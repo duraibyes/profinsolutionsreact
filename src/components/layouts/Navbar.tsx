@@ -92,9 +92,7 @@ export default function Navbar(props: Props) {
             <img src={Logo} />
             <Box sx={{ flexGrow: 1 }} />
             <Box className="flex-box">
-              <NavLink className="active"
-              to="/"
-              >
+              <NavLink className="active" to="/">
                 Home
               </NavLink>
               <Link href="#" underline="none">
@@ -112,16 +110,9 @@ export default function Navbar(props: Props) {
                   {userDetails?.name}
                 </Typography>
               ) : (
-                <Link
-                  component="button"
-                  variant="body2"
-                  className="link"
-                  onClick={() => {
-                    console.info("I'm a button.");
-                  }}
-                >
+                <NavLink className="" to="/">
                   Login
-                </Link>
+                </NavLink>
               )}
             </Box>
             <Box className="more-icon">

@@ -21,6 +21,7 @@ export type ProfessionalFormProps = {
   profession_name: string;
   no_of_years_profession: string;
   loanAmount: string;
+  profession_qualification: string;
 };
 
 const ProfessionalLoanForm = ({ id }: { id: number }) => {
@@ -30,13 +31,15 @@ const ProfessionalLoanForm = ({ id }: { id: number }) => {
     profession: "",
     no_of_years_profession: "",
     loanAmount: "",
-    profession_name: ""
+    profession_name: "",
+    profession_qualification: "",
   });
   const [errors, setErrors] = useState({
     no_of_years_profession: false,
     profession: false,
     loanAmount: false,
     profession_name: false,
+    profession_qualification: false,
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,10 +74,18 @@ const ProfessionalLoanForm = ({ id }: { id: number }) => {
 
   const validateForm = () => {
     const newErrors = {
-      no_of_years_profession: formFields.profession === 'other' && formFields.no_of_years_profession === "",
+      no_of_years_profession:
+        formFields.profession === "other" &&
+        formFields.no_of_years_profession === "",
       profession: formFields.profession === "",
       loanAmount: formFields.loanAmount === "",
-      profession_name: formFields.profession === 'other' && formFields.profession_name === ""
+      profession_name:
+        (formFields.profession === "other" ||
+          (formFields.profession === "doctor" &&
+            formFields.profession_qualification === "others")) &&
+        formFields.profession_name === "",
+      profession_qualification:
+        formFields.profession === "doctor" && formFields.profession_qualification === "",
     };
 
     setErrors(newErrors);
@@ -134,7 +145,9 @@ const ProfessionalLoanForm = ({ id }: { id: number }) => {
                   <TextField
                     name="profession_name"
                     error={errors.profession_name}
-                    helperText={errors.profession_name ? "Profession is required" : ""}
+                    helperText={
+                      errors.profession_name ? "Profession is required" : ""
+                    }
                     id="outlined-basic"
                     label="Profession Name"
                     className="pt-1 mb-2"
@@ -165,10 +178,61 @@ const ProfessionalLoanForm = ({ id }: { id: number }) => {
                     </RadioGroup>
                     {errors.no_of_years_profession && (
                       <Typography color="error" variant="caption">
-                        No of years in Profession
+                        No of years in Profession is required
                       </Typography>
                     )}
                   </Box>
+                </>
+              )}
+              {formFields.profession === "doctor" && (
+                <>
+                  <Box>
+                    <Typography className="mt-2 mb-2 text-black fw-800 ">
+                      Profession Type
+                    </Typography>
+                    <RadioGroup
+                      aria-labelledby="annual-term-radio-buttons-group"
+                      name="profession_qualification"
+                      value={formFields.profession_qualification}
+                      onChange={handleSelectChange}
+                    >
+                      <FormControlLabel
+                        value="MBBS"
+                        control={<Radio />}
+                        label="MBBS"
+                      />
+                      <FormControlLabel
+                        value="BDS"
+                        control={<Radio />}
+                        label="BDS"
+                      />
+                      <FormControlLabel
+                        value="others"
+                        control={<Radio />}
+                        label="Others"
+                      />
+                    </RadioGroup>
+                    {errors.no_of_years_profession && (
+                      <Typography color="error" variant="caption">
+                        Profession Type is required
+                      </Typography>
+                    )}
+                  </Box>
+                  {formFields.profession_qualification === "others" && (
+                    <TextField
+                      name="profession_name"
+                      error={errors.profession_name}
+                      helperText={
+                        errors.profession_name ? "Profession is required" : ""
+                      }
+                      id="outlined-basic"
+                      label="Profession Name"
+                      className="pt-1 mb-2"
+                      variant="outlined"
+                      value={formFields.profession_name}
+                      onChange={handleInputChange}
+                    />
+                  )}
                 </>
               )}
               <TextField
