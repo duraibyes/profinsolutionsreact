@@ -50,13 +50,13 @@ const LoanTabs = () => {
   const { data } = useLoanCategory();
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    const selectedItem = data ? data[newValue] : null;
+    const selectedItem = data ? data.data[newValue] : null;
     setValue({ index: newValue, slug: selectedItem ? selectedItem.slug : "" });
   };
 
   useEffect(() => {
     if (data) {
-      const selectedItem = data[0];
+      const selectedItem = data.data ? data.data[0] : "";
       setValue({ index: 0, slug: selectedItem ? selectedItem.slug : "" });
     }
   }, [data]);
