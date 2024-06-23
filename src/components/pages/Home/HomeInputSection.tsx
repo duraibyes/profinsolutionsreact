@@ -8,9 +8,14 @@ import {
 import { Dispatch, SetStateAction, memo, useCallback, useEffect, useState } from "react";
 import SubmitOtp from "./SubmitOtp";
 import axios from "axios";
+import { ApiPath } from "../../../services/LoanCategoryApi";
 type Props = {
   setMobileNo: Dispatch<SetStateAction<string>>;
   mobileNo: string;
+};
+
+const defaultHeaders = {
+  "Content-Type": "application/json",
 };
 
 const HomeInputSection = ({ setMobileNo, mobileNo }: Props) => {
@@ -23,10 +28,12 @@ const HomeInputSection = ({ setMobileNo, mobileNo }: Props) => {
   }, []);
 
   const getOTP = async () => {
-    console.log(" get otp called");
     try {
-      const response = await axios.post('http://localhost:8000/api/send-otp', {
+      const response = await axios.post(`${ApiPath}send-otp`, {
         mobile_no: mobileNo,
+      },{
+        headers: defaultHeaders,
+        withCredentials: true // This includes credentials in the request
       });
       setIsOtpSent(true);
       setVerifyOTP(response.data.otp); // Assuming the API returns the OTP

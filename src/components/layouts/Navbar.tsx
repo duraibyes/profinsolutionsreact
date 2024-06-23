@@ -18,7 +18,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import UserIcon from "../../assets/userIcon.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation  } from "react-router-dom";
 
 interface UserDetails {
   mobile_no: string;
@@ -34,6 +34,7 @@ interface Props {
 const drawerWidth = 240;
 export default function Navbar(props: Props) {
   const { window } = props;
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -80,7 +81,7 @@ export default function Navbar(props: Props) {
       setUser(JSON.parse(userData));
     }
   }, []);
-
+  console.log('  location ', location)
   return (
     <Grid container className="main-section">
       <Grid item xs={12}>
@@ -92,12 +93,12 @@ export default function Navbar(props: Props) {
             <img src={Logo} />
             <Box sx={{ flexGrow: 1 }} />
             <Box className="flex-box">
-              <NavLink className="active" to="/">
+              <NavLink className={location.pathname === "/" ? "active" : ""} to="/">
                 Home
               </NavLink>
-              <Link href="#" underline="none">
+              <NavLink className={location.pathname === "/about" ? "active" : ""} to="/about">
                 About Us
-              </Link>
+              </NavLink>
               <Link href="#" underline="none">
                 Reach Us
               </Link>

@@ -1,6 +1,11 @@
 // LoanCategoryApi.ts
 import { useQuery } from "@tanstack/react-query";
-export const ApiPath = "http://localhost:8000/api/";
+// export const ApiPath = "http://localhost:8000/api/";
+
+
+export const ApiPath = "https://devfriend.in/admin/api/";
+// export const ApiPath = "http://localhost/profin-admin/api/";
+
 const apiUrl = `${ApiPath}loan-category`;
 
 export type LoanCategoryProps = {
@@ -11,7 +16,7 @@ export type LoanCategoryProps = {
   icon_url: string;
 };
 
-const defaultHeaders = {
+export const defaultHeaders = {
   "Content-Type": "application/json",
   Authorization: `Bearer ${localStorage.getItem("authToken")}`,
 };
@@ -39,11 +44,7 @@ export const useGetLoanCategory = (slug: string) => {
   return useQuery({
     queryKey: [apiUrl + "/" + slug],
     queryFn: () =>
-      fetch(apiUrl + "/" + slug, {
-        headers: {
-          ...defaultHeaders,
-        },
-      }).then((res) => res.json()),
+      fetch(apiUrl + "/" + slug, { headers: defaultHeaders, credentials: 'include' }).then((res) => res.json()),
     refetchOnWindowFocus: false,
     enabled: true,
   });

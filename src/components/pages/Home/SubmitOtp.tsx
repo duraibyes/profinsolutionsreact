@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ApiPath } from "../../../services/LoanCategoryApi";
 
+const defaultHeaders = {
+  "Content-Type": "application/json",
+};
+
 const SubmitOtp = ({
   verifyOTP,
   mobileNo,
@@ -36,6 +40,9 @@ const SubmitOtp = ({
         const response = await axios.post(`${ApiPath}submit-otp`, {
           mobile_no: mobileNo,
           otp: otp
+        },{
+          headers: defaultHeaders,
+          withCredentials: true // This includes credentials in the request
         });
         if (response.data.error === "0") {
           localStorage.setItem("authToken", response.data.token);

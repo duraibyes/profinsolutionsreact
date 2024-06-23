@@ -8,7 +8,7 @@ import { useState } from "react";
 import Successdialog from "../../dialog/SuccessDialog";
 import { BusinessFormProps } from "./BussinessLoanForm";
 import axios from "axios";
-import { ApiPath } from "../../../services/LoanCategoryApi";
+import { ApiPath, defaultHeaders } from "../../../services/LoanCategoryApi";
 import { useNavigate } from "react-router-dom";
 import { ProfessionalFormProps } from "./ProfessionalLoanForm";
 import { PersonalFormProps } from "./PersonalLoanForm";
@@ -99,11 +99,9 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
         alterNo,
       };
       try {
-        const bearerToken =  localStorage.getItem("authToken");
         const response = await axios.post(ApiPath + 'loan-category', updatedFormFields, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-          },
+          headers: defaultHeaders,
+          withCredentials: true
         });
 
         if(response.data.error === 0) {

@@ -11,6 +11,7 @@ import Loans from "./components/pages/Loan/Loans";
 import ContactInfo from "./components/layouts/ContactInfo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProtectedRoute from "./services/ProtectedRoute";
+import About from "./components/pages/about/About";
 
 const theme = createTheme({
   palette: {
@@ -48,6 +49,7 @@ function App() {
               <NavBar />
               <Routes>
                 <Route path="/" element={<Home />}></Route>
+                <Route path="/about" element={<About />}></Route>
                 <Route path="/loans" element={<ProtectedRoute element={Loans} />}></Route>
               </Routes>
               <ContactInfo />
