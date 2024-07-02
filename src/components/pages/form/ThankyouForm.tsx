@@ -15,12 +15,15 @@ import { PersonalFormProps } from "./PersonalLoanForm";
 import { HomeLoanFormProps } from "./HomeLoanForm";
 import { MedicalFormProps } from "./MedicalEquipmentLoanForm";
 import { SmeFormProps } from "./SmeLoanForm";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../services/store";
 
 type ThankyouFormProps = {
   formFields: BusinessFormProps | ProfessionalFormProps | PersonalFormProps | HomeLoanFormProps | MedicalFormProps | SmeFormProps;
 };
 
 const ThankyouForm = ({formFields}: ThankyouFormProps) => {
+  const token = useSelector((state: RootState) => state.auth.token);
 
   const navigate = useNavigate();
   const [open, setOpen] = useState<boolean>(false);
@@ -88,6 +91,7 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
   };
 
   const handleSubmit = async () => {
+
     if (validateForm()) {
       setIsFormSubmit(true);
       const updatedFormFields = {
@@ -97,6 +101,7 @@ const ThankyouForm = ({formFields}: ThankyouFormProps) => {
         mobileNo,
         whatsappNo,
         alterNo,
+        api_token: token,
       };
       try {
         const response = await axios.post(ApiPath + 'loan-category', updatedFormFields, {
