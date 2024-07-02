@@ -1,6 +1,8 @@
 // LoanCategoryApi.ts
 import { useQuery } from "@tanstack/react-query";
-// export const ApiPath = "http://localhost:8000/api/";
+import { RootState } from "./store";
+import { useSelector } from "react-redux";
+// export const ApiPath = "http://localhost/profin-admin/api/";
 
 
 export const ApiPath = "http://devfriend.in/admin/api/";
@@ -14,19 +16,30 @@ export type LoanCategoryProps = {
   slug: string;
   icon: string;
   icon_url: string;
+  info?: any;
 };
 
 export const defaultHeaders = {
   "Content-Type": "application/json",
-  Authorization: `Bearer ${localStorage.getItem("authToken")}`,
 };
 
-export const fetchLoanCategories = async (): Promise<LoanCategoryProps[]> => {
-  const res = await fetch(apiUrl);
+export const fetchLoanCategory = async (slug: string, token: string): Promise<LoanCategoryProps> => {
+  console.log( {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+  const res = await fetch(`${apiUrl}/${slug}?api_token=${token}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
   if (!res.ok) {
     throw new Error("Network response was not ok");
   }
-  const data: LoanCategoryProps[] = await res.json();
+  const data: LoanCategoryProps = await res.json();
   return data;
 };
 
@@ -40,11 +53,11 @@ export const useLoanCategory = () => {
 };
 
 export const useGetLoanCategory = (slug: string) => {
-  console.log('  defaultHeaders ', defaultHeaders);
+  const token = useSelector((state: RootState) => state.auth.token);
+  console.log('  token ', token);
   return useQuery({
     queryKey: [apiUrl + "/" + slug],
-    queryFn: () =>
-      fetch(apiUrl + "/" + slug, { headers: defaultHeaders, credentials: 'include' }).then((res) => res.json()),
+    queryFn: () => fetchLoanCategory(slug, token || ""),
     refetchOnWindowFocus: false,
     enabled: true,
   });

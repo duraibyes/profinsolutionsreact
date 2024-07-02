@@ -19,6 +19,8 @@ import {
 } from "@mui/material";
 import UserIcon from "../../assets/userIcon.svg";
 import { NavLink, useLocation  } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../services/store";
 
 interface UserDetails {
   mobile_no: string;
@@ -33,6 +35,9 @@ interface Props {
 }
 const drawerWidth = 240;
 export default function Navbar(props: Props) {
+
+  const userData = useSelector((state: RootState) => state.auth.user); // Get the token from the store
+
   const { window } = props;
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -81,7 +86,6 @@ export default function Navbar(props: Props) {
       setUser(JSON.parse(userData));
     }
   }, []);
-  console.log('  location ', location)
   return (
     <Grid container className="main-section">
       <Grid item xs={12}>
@@ -102,13 +106,13 @@ export default function Navbar(props: Props) {
               <Link href="#" underline="none">
                 Reach Us
               </Link>
-              {user ? (
+              {userData ? (
                 <Typography className="link">
                   <img
                     src={UserIcon}
                     style={{ width: "16px", paddingRight: "5px" }}
                   />
-                  {user?.name}
+                  {userData?.name}
                 </Typography>
               ) : (
                 <NavLink className="" to="/">

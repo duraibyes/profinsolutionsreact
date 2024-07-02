@@ -5,6 +5,8 @@ import FailIcon from "../../../assets/otp-wrong-icon.svg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ApiPath } from "../../../services/LoanCategoryApi";
+import { useDispatch } from "react-redux";
+import { setAuthToken, setUser } from "../../../services/authSlice";
 
 const defaultHeaders = {
   "Content-Type": "application/json",
@@ -18,6 +20,7 @@ const SubmitOtp = ({
   mobileNo: string;
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [otp, setOtp] = useState<string>("");
   const [otpSuccess, setOtpSuccess] = useState<boolean>(false);
   const [otpFail, setOtpFail] = useState<boolean>(false);
@@ -31,33 +34,34 @@ const SubmitOtp = ({
     } else {
       setOtpFail(false);
     }
-  },[]);
+  }, []);
 
   const handleSubmitOtp = async () => {
     if (otp.length === 4 && verifyOTP === otp) {
       setOtpSuccess(true);
       try {
-        const response = await axios.post(`${ApiPath}submit-otp`, {
-          mobile_no: mobileNo,
-          otp: otp
-        },{
-          headers: defaultHeaders,
-          withCredentials: true // This includes credentials in the request
-        });
+        const response = await axios.post(
+          `${ApiPath}submit-otp`,
+          {
+            mobile_no: mobileNo,
+            otp: otp,
+          },
+          {
+            headers: defaultHeaders,
+            withCredentials: true, // This includes credentials in the request
+          }
+        );
         if (response.data.error === "0") {
-          localStorage.setItem("authToken", response.data.token);
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-
+          dispatch(setAuthToken(response.data.token));
+          dispatch(setUser(response.data.user));
           setTimeout(() => {
-
-            navigate('/loans');
-          }, 1000)
-
+            navigate("/loans");
+          }, 1000);
         } else {
           console.error("Invalid OTP:", response.data.message);
         }
       } catch (error) {
-        console.error('Error sending OTP:', error);
+        console.error("Error sending OTP:", error);
       }
     }
   };
@@ -94,7 +98,9 @@ const SubmitOtp = ({
         />
       </FormControl>
       <Button
-        className={`get-otp-btn${otp.length === 4 && verifyOTP === otp ? "-primary" : ""}`}
+        className={`get-otp-btn${
+          otp.length === 4 && verifyOTP === otp ? "-primary" : ""
+        }`}
         disabled={otp.length !== 4 || verifyOTP !== otp}
         sx={{ borderRadius: "0", height: "56px" }}
         onClick={handleSubmitOtp}
@@ -106,7 +112,7 @@ const SubmitOtp = ({
       )}
 
       {otpFail && (
-        <img src={FailIcon}  style={{ height: "56px", marginLeft: "10px" }} />
+        <img src={FailIcon} style={{ height: "56px", marginLeft: "10px" }} />
       )}
     </>
   );

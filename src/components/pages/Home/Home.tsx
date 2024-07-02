@@ -10,16 +10,19 @@ import LoanBulletList from "./LoanBulletList";
 import About from "../about/About";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../services/store";
 
 const Home = () => {
   const navigate = useNavigate();
   const [mobileNo, setMobileNo] = useState<string>('');
+  const token = useSelector((state: RootState) => state.auth.token);
+  console.log('t oken is on ', token)
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken");
-    if (authToken) {
-      navigate("/loans");
+    if (token) {
+      // navigate("/loans");
     }
-  }, [navigate]);
+  }, [token, navigate]);
   return (
     <>
     <Grid container className="main-section">

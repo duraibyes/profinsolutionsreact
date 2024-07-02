@@ -3,7 +3,7 @@ import NavBar from "./components/layouts/Navbar";
 import GlobalStylesComponent from "./styles/GlobalStylesComponent ";
 
 import Footer from "./components/layouts/Footer";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./components/pages/Home/Home";
 import Loader from "./components/Loader";
 import { useEffect, useState } from "react";
@@ -12,6 +12,8 @@ import ContactInfo from "./components/layouts/ContactInfo";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProtectedRoute from "./services/ProtectedRoute";
 import About from "./components/pages/about/About";
+import { useSelector } from "react-redux";
+import { RootState } from "./services/store";
 
 const theme = createTheme({
   palette: {
@@ -22,10 +24,12 @@ const theme = createTheme({
 });
 
 const loading = true;
+
 const queryClient = new QueryClient();
 
 function App() {
   const [loader, setLoader] = useState(true);
+  const token = useSelector((state: RootState) => state.auth.token); // Get the token from the store
 
   useEffect(() => {
     console.log(" entering into efferct");
@@ -48,7 +52,7 @@ function App() {
             <Router>
               <NavBar />
               <Routes>
-                <Route path="/" element={<Home />}></Route>
+                <Route path="/" element={token ? <Navigate to="/loans" /> : <Home />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/loans" element={<ProtectedRoute element={Loans} />}></Route>
               </Routes>
